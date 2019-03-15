@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <style>
+    html {
+      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+      width: 50%;
+      height: 6px;
+      background: black;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%; /* makes clock hand rotate from bottom axis of large hand instead of center  */
+      transform: rotate(90deg); /*starts hands pointing upward*/
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.585, 1)  /*makes tick go back a bit then tick forward */
+    }
+
+  </style>
+
+  <script>
+    const secondHand = document.querySelector('.second-hand'); // select class called second-hand
+    const minuteHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
+
+
+    function setDate(){ // run this code, assign it to setDate
+        const now = new Date(); // define now
+
+        const seconds = now.getSeconds(); // uses time now. to find actual time in seconds
+        const secondsToDegrees = ((seconds / 60) * 360) + 90; //converts from seconds to degrees
+        secondHand.style.transform = `rotate(${secondsToDegrees}deg)`; //transforms the hand by degrees to match current time
+
+        const mins = now.getMinutes(); 
+        const minsToDegrees = ((mins / 60) * 360) + 90;
+        minuteHand.style.transform = `rotate(${minsToDegrees}deg)`;
+    
+        const hours = now.getHours();
+        const hoursToDegrees = (hours * 30) +90; //way to go here, found a much quicker way than instructor
+        hourHand.style.transform = `rotate(${hoursToDegrees}deg)`;
+
+    }
+
+    
+    setInterval(setDate, 1000); /*run every second (1000 milliseconds)*/
+
+  </script>
+</body>
+</html>
