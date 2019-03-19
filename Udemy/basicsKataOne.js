@@ -75,8 +75,44 @@ console.log(now / 10);
 let drewOlder = ageDrew > ageKate;
 console.log(drewOlder);
 
+// tyeOf operator
+
+console.log(typeof drewOlder)
 
 
+// Kata 1 ***************************************
+//***********************************************
+/* 
+mark and john are trying to compare their BMI
+BMI = mass / height^2 
+mass must be in kg and height in meters
+
+1. Store heights in variables
+2. Calc both bmi
+3. Create boolean vars containing information about whether
+mark has a higher bmi than john
+4. print a string to console containing the var
+from step 3. ("is mark's bmi higher than johns? t or f")
+*/
+
+//create a variable for marks and johns mass and height
+let markMass = 80;
+let johnMass = 75;
+
+let markHt = 2;
+let johnHt = 1.75;
+
+//calc bmi
+let bmiMark = markMass / (markHt * markHt);
+let bmiJohn = johnMass / (johnHt * johnHt);
+
+let markHigherBMI = bmiMark > bmiJohn;
+
+if (markHigherBMI = true) {
+    console.log('Mark')
+} else {
+    console.log('John')
+}
 
 
 
